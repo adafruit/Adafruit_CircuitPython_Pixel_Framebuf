@@ -49,7 +49,7 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Pixel_Framebuf.gi
 HORIZONTAL = const(1)
 VERTICAL = const(2)
 
-
+# pylint: disable=too-many-function-args
 class PixelFramebuffer:
     """
     NeoPixel and Dotstar FrameBuffer for easy drawing and text on a
@@ -123,16 +123,12 @@ class PixelFramebuffer:
 
     def vline(self, x, y, height, color):
         """draw a vertical line"""
-        self._framebuf.vline(
-            self, x, y, height, color
-        )  # pylint: disable=too-many-function-args
+        self._framebuf.vline(self, x, y, height, color)
 
     def circle(self, center_x, center_y, radius, color):
         """Draw a circle at the given midpoint location, radius and color.
         The ```circle``` method draws only a 1 pixel outline."""
-        self._framebuf.circle(
-            center_x, center_y, radius, color
-        )  # pylint: disable=too-many-function-args
+        self._framebuf.circle(center_x, center_y, radius, color)
 
     def image(self, image):
         """Set buffer to value of Python Imaging Library image.  The image should
