@@ -36,8 +36,8 @@ setup(
     author_email="circuitpython@adafruit.com",
     install_requires=[
         "Adafruit-Blinka",
-        "adafruit_framebuf",
-        "adafruit_led_animation",
+        "adafruit-circuitpython-framebuf",
+        "adafruit-circuitpython-led-animation",
     ],
     # Choose your license
     license="MIT",

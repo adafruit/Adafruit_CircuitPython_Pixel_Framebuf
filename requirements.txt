@@ -4,5 +4,5 @@
 # SPDX-License-Identifier: MIT
 
 Adafruit-Blinka
-adafruit_framebuf
-adafruit_led_animation
+adafruit-circuitpython-framebuf
+adafruit-circuitpython-led-animation
