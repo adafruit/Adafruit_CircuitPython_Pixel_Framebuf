@@ -123,12 +123,16 @@ class PixelFramebuffer:
 
     def vline(self, x, y, height, color):
         """draw a vertical line"""
-        self._framebuf.vline(self, x, y, height, color)
+        self._framebuf.vline(
+            self, x, y, height, color
+        )  # pylint: disable=too-many-function-args
 
     def circle(self, center_x, center_y, radius, color):
         """Draw a circle at the given midpoint location, radius and color.
         The ```circle``` method draws only a 1 pixel outline."""
-        self._framebuf.circle(center_x, center_y, radius, color)
+        self._framebuf.circle(
+            center_x, center_y, radius, color
+        )  # pylint: disable=too-many-function-args
 
     def image(self, image):
         """Set buffer to value of Python Imaging Library image.  The image should

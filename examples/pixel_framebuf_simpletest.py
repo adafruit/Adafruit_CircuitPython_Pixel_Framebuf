@@ -13,10 +13,18 @@ pixel_width = 8
 pixel_height = 4
 
 pixels = neopixel.NeoPixel(
-    pixel_pin, pixel_width * pixel_height, brightness=0.1, auto_write=False,
+    pixel_pin,
+    pixel_width * pixel_height,
+    brightness=0.1,
+    auto_write=False,
 )
 
-pixel_framebuf = PixelFramebuffer(pixels, pixel_width, pixel_height, alternating=False,)
+pixel_framebuf = PixelFramebuffer(
+    pixels,
+    pixel_width,
+    pixel_height,
+    alternating=False,
+)
 
 pixel_framebuf.fill(0x000088)
 pixel_framebuf.pixel(5, 1, 0xFFFF00)
