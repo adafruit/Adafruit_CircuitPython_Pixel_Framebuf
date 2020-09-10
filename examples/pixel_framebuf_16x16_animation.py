@@ -9,18 +9,10 @@ pixel_width = 16
 pixel_height = 16
 
 pixels = neopixel.NeoPixel(
-    pixel_pin,
-    pixel_width * pixel_height,
-    brightness=0.1,
-    auto_write=False,
+    pixel_pin, pixel_width * pixel_height, brightness=0.1, auto_write=False,
 )
 
-pixel_framebuf = PixelFramebuffer(
-    pixels,
-    pixel_width,
-    pixel_height,
-    reverse_x=True,
-)
+pixel_framebuf = PixelFramebuffer(pixels, pixel_width, pixel_height, reverse_x=True,)
 
 text = "Welcome to CircuitPython"
 

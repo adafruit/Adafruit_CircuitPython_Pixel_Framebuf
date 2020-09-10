@@ -12,19 +12,10 @@ pixel_width = 12
 pixel_height = 6
 
 pixels = adafruit_dotstar.DotStar(
-    board.D13,
-    board.D11,
-    pixel_width * pixel_height,
-    brightness=0.3,
-    auto_write=False,
+    board.D13, board.D11, pixel_width * pixel_height, brightness=0.3, auto_write=False,
 )
 
-pixel_framebuf = PixelFramebuffer(
-    pixels,
-    pixel_width,
-    pixel_height,
-    alternating=False,
-)
+pixel_framebuf = PixelFramebuffer(pixels, pixel_width, pixel_height, alternating=False,)
 
 pixel_framebuf.fill(0x000088)
 pixel_framebuf.pixel(5, 1, 0xFFFF00)
