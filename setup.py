@@ -34,7 +34,11 @@ setup(
     # Author details
     author="Adafruit Industries",
     author_email="circuitpython@adafruit.com",
-    install_requires=["Adafruit-Blinka", "adafruit_framebufadafruit_led_animation",],
+    install_requires=[
+        "Adafruit-Blinka",
+        "adafruit_framebuf",
+        "adafruit_led_animation",
+    ],
     # Choose your license
     license="MIT",
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
