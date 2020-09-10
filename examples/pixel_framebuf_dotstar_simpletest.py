@@ -3,7 +3,6 @@
 """
 This example runs on an Adafruit Dotstar Feather
 """
-import time
 import board
 import adafruit_dotstar
 from adafruit_pixel_framebuf import PixelFramebuffer

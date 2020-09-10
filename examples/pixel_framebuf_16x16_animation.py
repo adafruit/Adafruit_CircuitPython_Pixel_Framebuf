@@ -1,6 +1,5 @@
 # SPDX-FileCopyrightText: 2020 Melissa LeBlanc-Williams, written for Adafruit Industries
 # SPDX-License-Identifier: MIT
-import time
 import board
 import neopixel
 from adafruit_pixel_framebuf import PixelFramebuffer

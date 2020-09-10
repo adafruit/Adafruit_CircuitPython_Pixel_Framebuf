@@ -3,7 +3,6 @@
 """
 This example runs on an Adafruit NeoPixel Feather
 """
-import time
 import board
 import neopixel
 from adafruit_pixel_framebuf import PixelFramebuffer
