@@ -50,7 +50,7 @@ HORIZONTAL = const(1)
 VERTICAL = const(2)
 
 # pylint: disable=too-many-function-args
-class PixelFramebuffer:
+class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
     """
     NeoPixel and Dotstar FrameBuffer for easy drawing and text on a
     grid of either kind of pixel
@@ -85,84 +85,15 @@ class PixelFramebuffer:
         )
 
         self._buffer = bytearray(width * height * 3)
-        self._framebuf = adafruit_framebuf.FrameBuffer(
+        super().__init__(
             self._buffer, width, height, buf_format=adafruit_framebuf.RGB888
         )
         self.rotation = rotation
-
-    def pixel(self, x, y, color=None):
-        """draw a single pixel in the display buffer"""
-        self._framebuf.pixel(x, y, color)
-
-    def fill(self, color):
-        """fill the screen with the passed color"""
-        self._framebuf.fill(color)
-
-    def rect(self, x, y, width, height, color):  # pylint: disable=too-many-arguments
-
-        """draw a rectangle"""
-        self._framebuf.rect(x, y, width, height, color)
-
-    def fill_rect(
-        self, x, y, width, height, color
-    ):  # pylint: disable=too-many-arguments
-        """fill a rectangle with the passed color"""
-        self._framebuf.fill_rect(x, y, width, height, color)
-
-    def line(self, x_0, y_0, x_1, y_1, color):  # pylint: disable=too-many-arguments
-        """Draw a line from (x_0, y_0) to (x_1, y_1) in passed color"""
-        self._framebuf.line(x_0, y_0, x_1, y_1, color)
-
-    def text(self, string, x, y, color, *, font_name="font5x8.bin"):
-        """Write text string at location (x, y) in given color, using font file"""
-        self._framebuf.text(string, x, y, color, font_name=font_name)
-
-    def hline(self, x, y, width, color):
-        """draw a horizontal line"""
-        self._framebuf.hline(self, x, y, width, color)
-
-    def vline(self, x, y, height, color):
-        """draw a vertical line"""
-        self._framebuf.vline(self, x, y, height, color)
-
-    def circle(self, center_x, center_y, radius, color):
-        """Draw a circle at the given midpoint location, radius and color.
-        The ```circle``` method draws only a 1 pixel outline."""
-        self._framebuf.circle(center_x, center_y, radius, color)
-
-    def image(self, image):
-        """Set buffer to value of Python Imaging Library image.  The image should
-        be in RGB mode and a size equal to the display size.
-        """
-        self._framebuf.image(image)
 
     def display(self):
         """Copy the raw buffer to the grid and show"""
         for _y in range(self._height):
             for _x in range(self._width):
-                index = (_y * self._framebuf.stride + _x) * 3
+                index = (_y * self.stride + _x) * 3
                 self._grid[(_x, _y)] = tuple(self._buffer[index : index + 3])
         self._grid.show()
-
-    @property
-    def width(self):
-        """The width of the display, accounting for rotation"""
-        if self.rotation in (0, 2):
-            return self._width
-        return self._height
-
-    @property
-    def height(self):
-        """The height of the display, accounting for rotation"""
-        if self.rotation in (0, 2):
-            return self._height
-        return self._width
-
-    @property
-    def rotation(self):
-        """The rotation of the display, can be one of (0, 1, 2, 3)"""
-        return self._framebuf.rotation
-
-    @rotation.setter
-    def rotation(self, val):
-        self._framebuf.rotation = val
