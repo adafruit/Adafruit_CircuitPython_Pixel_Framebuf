@@ -90,6 +90,10 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         )
         self.rotation = rotation
 
+    def blit(self):
+        """blit is not yet implemented"""
+        raise NotImplementedError()
+
     def display(self):
         """Copy the raw buffer to the grid and show"""
         for _y in range(self._height):
