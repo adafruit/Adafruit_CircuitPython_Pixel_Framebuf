@@ -23,7 +23,7 @@ while True:
         pixel_framebuf.line(0, 0, pixel_width - 1, pixel_height - 1, 0x00FF00)
         pixel_framebuf.line(0, pixel_width - 1, pixel_height - 1, 0, 0x00FF00)
         pixel_framebuf.fill_rect(2, 3, 12, 10, 0x000000)
-        pixel_framebuf.text(text, 16 - i, 4, 0xFFFF00)
+        pixel_framebuf.text(text, pixel_width - i, 4, 0xFFFF00)
         pixel_framebuf.rect(1, 2, 14, 12, 0xFF0000)
         pixel_framebuf.line(0, 2, 0, 14, 0x000088)
         pixel_framebuf.line(pixel_width - 1, 2, pixel_width - 1, 14, 0x000088)
