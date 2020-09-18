@@ -11,8 +11,8 @@ Author(s): Melissa LeBlanc-Williams for Adafruit Industries
 """
 import board
 import neopixel
-from adafruit_pixel_framebuf import PixelFramebuffer
 from PIL import Image
+from adafruit_pixel_framebuf import PixelFramebuffer
 
 pixel_pin = board.D18
 pixel_width = 16
