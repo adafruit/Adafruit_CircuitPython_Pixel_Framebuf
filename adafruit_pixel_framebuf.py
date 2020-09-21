@@ -54,6 +54,18 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
     """
     NeoPixel and Dotstar FrameBuffer for easy drawing and text on a
     grid of either kind of pixel
+
+    :param strip: An object that implements the Neopixel or Dotstar protocol.
+    :param width: Framebuffer width.
+    :param height: Framebuffer height.
+    :param orientation: Orientation of the strip pixels - HORIZONTAL (default) or VERTICAL.
+    :param alternating: Whether the strip alternates direction from row to row (default True).
+    :param reverse_x: Whether the strip X origin is on the right side (default False).
+    :param reverse_y: Whether the strip Y origin is on the bottom (default False).
+    :param tuple top: (x, y) coordinates of grid top left corner (Optional)
+    :param tuple bottom: (x, y) coordinates of grid bottom right corner (Optional)
+    :param int rotation: A value of 0-3 representing the rotation of the framebuffer (default 0)
+
     """
 
     def __init__(
@@ -96,7 +108,7 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         raise NotImplementedError()
 
     def display(self):
-        """Copy the raw buffer to the grid and show"""
+        """Copy the raw buffer changes to the grid and show"""
         for _y in range(self._height):
             for _x in range(self._width):
                 index = (_y * self.stride + _x) * 3
