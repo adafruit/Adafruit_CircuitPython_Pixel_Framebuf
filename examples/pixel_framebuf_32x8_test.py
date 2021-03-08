@@ -9,7 +9,10 @@ pixel_width = 32
 pixel_height = 8
 
 pixels = neopixel.NeoPixel(
-    pixel_pin, pixel_width * pixel_height, brightness=0.1, auto_write=False,
+    pixel_pin,
+    pixel_width * pixel_height,
+    brightness=0.1,
+    auto_write=False,
 )
 
 pixel_framebuf = PixelFramebuffer(
