@@ -92,6 +92,11 @@ Usage Example
     pixel_framebuf.line(0, 0, pixel_width - 1, pixel_height - 1, 0x00FF00)
     pixel_framebuf.display()
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/pixel_framebuf/en/latest/>`_.
+
 Contributing
 ============
 
