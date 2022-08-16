@@ -43,7 +43,7 @@ from micropython import const
 import adafruit_framebuf
 from adafruit_led_animation.grid import PixelGrid
 
-__version__ = "0.0.0-auto.0"
+__version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Pixel_Framebuf.git"
 
 HORIZONTAL = const(1)
