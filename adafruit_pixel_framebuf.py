@@ -38,16 +38,21 @@ Implementation Notes
 """
 
 # imports
+try:
+    from circuitpython_typing.led import FillBasedColorUnion
+except ImportError:
+    pass
 
-from micropython import const
 import adafruit_framebuf
 from adafruit_led_animation.grid import PixelGrid
+from micropython import const
 
 __version__ = "0.0.0+auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_Pixel_Framebuf.git"
 
-HORIZONTAL = const(1)
-VERTICAL = const(2)
+HORIZONTAL: int = const(1)
+VERTICAL: int = const(2)
+
 
 # pylint: disable=too-many-function-args
 class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
@@ -59,6 +64,7 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
     :param width: Framebuffer width.
     :param height: Framebuffer height.
     :param orientation: Orientation of the strip pixels - HORIZONTAL (default) or VERTICAL.
+      HORIZONTAL and VERTICAL are primitive integers created by micropython.const(x).
     :param alternating: Whether the strip alternates direction from row to row (default True).
     :param reverse_x: Whether the strip X origin is on the right side (default False).
     :param reverse_y: Whether the strip Y origin is on the bottom (default False).
@@ -68,19 +74,20 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
 
     """
 
+    # pylint: disable=too-many-arguments
     def __init__(
         self,
-        pixels,
-        width,
-        height,
-        orientation=HORIZONTAL,
-        alternating=True,
-        reverse_x=False,
-        reverse_y=False,
-        top=0,
-        bottom=0,
-        rotation=0,
-    ):  # pylint: disable=too-many-arguments
+        pixels: FillBasedColorUnion,
+        width: int,
+        height: int,
+        orientation: int = HORIZONTAL,
+        alternating: bool = True,
+        reverse_x: bool = False,
+        reverse_y: bool = False,
+        top: int = 0,
+        bottom: int = 0,
+        rotation: int = 0,
+    ) -> None:
         self._width = width
         self._height = height
 
@@ -103,11 +110,11 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         )
         self.rotation = rotation
 
-    def blit(self):
+    def blit(self) -> None:
         """blit is not yet implemented"""
         raise NotImplementedError()
 
-    def display(self):
+    def display(self) -> None:
         """Copy the raw buffer changes to the grid and show"""
         for _y in range(self._height):
             for _x in range(self._width):
