@@ -39,10 +39,7 @@ Implementation Notes
 
 # imports
 try:
-    from typing import Union
-
-    from adafruit_dotstar import DotStar
-    from neopixel import NeoPixel
+    from circuitpython_typing.led import FillBasedColorUnion
 except ImportError:
     pass
 
@@ -77,9 +74,10 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
 
     """
 
+    # pylint: disable=too-many-arguments
     def __init__(
         self,
-        pixels: Union[NeoPixel, DotStar],
+        pixels: FillBasedColorUnion,
         width: int,
         height: int,
         orientation: int = HORIZONTAL,
@@ -89,7 +87,7 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         top: int = 0,
         bottom: int = 0,
         rotation: int = 0,
-    ) -> None:  # pylint: disable=too-many-arguments
+    ) -> None:
         self._width = width
         self._height = height
 
@@ -107,7 +105,9 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
 
         self._buffer = bytearray(width * height * 3)
         self._double_buffer = bytearray(width * height * 3)
-        super().__init__(self._buffer, width, height, buf_format=adafruit_framebuf.RGB888)
+        super().__init__(
+            self._buffer, width, height, buf_format=adafruit_framebuf.RGB888
+        )
         self.rotation = rotation
 
     def blit(self) -> None:
@@ -119,7 +119,12 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         for _y in range(self._height):
             for _x in range(self._width):
                 index = (_y * self.stride + _x) * 3
-                if self._buffer[index : index + 3] != self._double_buffer[index : index + 3]:
+                if (
+                    self._buffer[index : index + 3]
+                    != self._double_buffer[index : index + 3]
+                ):
                     self._grid[(_x, _y)] = tuple(self._buffer[index : index + 3])
-                    self._double_buffer[index : index + 3] = self._buffer[index : index + 3]
+                    self._double_buffer[index : index + 3] = self._buffer[
+                        index : index + 3
+                    ]
         self._grid.show()
