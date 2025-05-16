@@ -3,8 +3,10 @@
 """
 This example runs on an Adafruit NeoPixel Feather
 """
+
 import board
 import neopixel
+
 from adafruit_pixel_framebuf import PixelFramebuffer
 
 pixel_pin = board.D6

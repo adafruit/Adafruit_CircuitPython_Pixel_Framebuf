@@ -54,7 +54,6 @@ HORIZONTAL: int = const(1)
 VERTICAL: int = const(2)
 
 
-# pylint: disable=too-many-function-args
 class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
     """
     NeoPixel and Dotstar FrameBuffer for easy drawing and text on a
@@ -74,7 +73,6 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
 
     """
 
-    # pylint: disable=too-many-arguments
     def __init__(
         self,
         pixels: FillBasedColorUnion,
@@ -105,9 +103,7 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
 
         self._buffer = bytearray(width * height * 3)
         self._double_buffer = bytearray(width * height * 3)
-        super().__init__(
-            self._buffer, width, height, buf_format=adafruit_framebuf.RGB888
-        )
+        super().__init__(self._buffer, width, height, buf_format=adafruit_framebuf.RGB888)
         self.rotation = rotation
 
     def blit(self) -> None:
@@ -119,12 +115,7 @@ class PixelFramebuffer(adafruit_framebuf.FrameBuffer):
         for _y in range(self._height):
             for _x in range(self._width):
                 index = (_y * self.stride + _x) * 3
-                if (
-                    self._buffer[index : index + 3]
-                    != self._double_buffer[index : index + 3]
-                ):
+                if self._buffer[index : index + 3] != self._double_buffer[index : index + 3]:
                     self._grid[(_x, _y)] = tuple(self._buffer[index : index + 3])
-                    self._double_buffer[index : index + 3] = self._buffer[
-                        index : index + 3
-                    ]
+                    self._double_buffer[index : index + 3] = self._buffer[index : index + 3]
         self._grid.show()
