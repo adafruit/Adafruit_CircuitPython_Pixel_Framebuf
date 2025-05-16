@@ -2,7 +2,8 @@
 # SPDX-License-Identifier: MIT
 import board
 import neopixel
-from adafruit_pixel_framebuf import PixelFramebuffer, VERTICAL
+
+from adafruit_pixel_framebuf import VERTICAL, PixelFramebuffer
 
 pixel_pin = board.D6
 pixel_width = 32

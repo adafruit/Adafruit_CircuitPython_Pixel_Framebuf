@@ -3,8 +3,10 @@
 """
 This example runs on an Adafruit Dotstar Feather
 """
-import board
+
 import adafruit_dotstar
+import board
+
 from adafruit_pixel_framebuf import PixelFramebuffer
 
 pixel_pin = board.D6

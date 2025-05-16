@@ -9,9 +9,11 @@ not support PIL/pillow (python imaging library)!
 
 Author(s): Melissa LeBlanc-Williams for Adafruit Industries
 """
+
 import board
 import neopixel
 from PIL import Image
+
 from adafruit_pixel_framebuf import PixelFramebuffer
 
 pixel_pin = board.D18
